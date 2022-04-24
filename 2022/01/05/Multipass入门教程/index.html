@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+<html lang="zn" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Multipass入门教程 - Yolel&#39;s Blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Yolel,"> 
+    <meta name="description" content="介绍思路
+安装snap命令，利用snap直接下载安装multipass
+
+环境
+系统：Kali linux 5.14.0
+
+snap简介
+什么是snap，snap是一种全新的软件包管理方式，它类似一,"> 
+    <meta name="author" content="Yolel"> 
+    <link rel="alternative" href="atom.xml" title="Yolel&#39;s Blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+    
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+
+    
+    <script>var musiclist = ""</script>
+    
+<script src="/js/loadaplayer.js"></script>
+
+    <!-- 引用依赖 -->
+    
+<link rel="stylesheet" href="/aplayer/dist/APlayer.min.css">
+
+    
+<script src="/aplayer/dist/APlayer.min.js"></script>
+<script src="/js/Meting.min.js"></script>
+
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">Yolel&#39;s Blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="http://yolel.github.io">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">Multipass入门教程</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url('/img/cover.jpg') ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/TOOLS"><b>「
+                    </b>TOOLS<b> 」</b></a>
+                
+                January 05, 2022
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2022/01/05/Multipass%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" title="Multipass入门教程" class="">Multipass入门教程</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>Words count</i>
+                    5k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                    5 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>Read count</i>
+                    <span id="busuanzi_value_page_pv">0</span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/virturalmachine/" rel="tag">virturalmachine</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><blockquote>
+<p>安装snap命令，利用snap直接下载安装multipass</p>
+</blockquote>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><blockquote>
+<p>系统：Kali linux 5.14.0</p>
+</blockquote>
+<h2 id="snap简介"><a href="#snap简介" class="headerlink" title="snap简介"></a>snap简介</h2><blockquote>
+<p>什么是snap，snap是一种全新的软件包管理方式，它类似一个容器拥有一个应用程序所有的文件和库，各个应用程序之间完全独立。所以使用snap包的好处就是它解决了应用程序之间的依赖问题，使应用程序之间更容易管理。但是由此带来的问题就是它占用更多的磁盘空间。</p>
+<p>Snap的安装包扩展名是.snap，类似于一个容器，它包含一个应用程序需要用到的所有文件和库（snap包包含一个私有的root文件系统，里面包含了依赖的软件包）。它们会被安装到单独的目录；各个应用程序之间相互隔离。使用snap有很多好处，首先它解决了软件包的依赖问题；其次，也使应用程序更容易管理。</p>
+</blockquote>
+<h2 id="multipass简介"><a href="#multipass简介" class="headerlink" title="multipass简介"></a>multipass简介</h2><blockquote>
+<p>那再来说说什么是Multipass，Multipass 是一个轻量级 VM 管理器，支持 Linux、Windows 与 macOS，这是为希望使用单个命令提供全新 Ubuntu 环境的开发人员而设计的。</p>
+<p>使用 Linux 上的 KVM、Windows 上的 Hyper-V 和 macOS 上的 HyperKit 来以最小的开销运行 VM，同时它还可以在 Windows 和 macOS 上使用 VirtualBox。</p>
+</blockquote>
+<h1 id="安装snap"><a href="#安装snap" class="headerlink" title="安装snap"></a>安装snap</h1><pre><code class="shell">sudo apt install snapd &amp;&amp; echo -e &quot;使用apt软件包管理工具安装snapd\n&quot;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2000-53-48%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 00-53-48屏幕截图"></p>
+<pre><code class="shell">snap help &amp;&amp; echo -e &quot;检验snap是否安装成功\n&quot;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2000-55-40%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 00-55-40屏幕截图"></p>
+<pre><code class="shell">systemctl start snapd.service &amp;&amp; ehco -e &quot;开启snapd服务，否则将无法安装软件\n&quot;
+snap &amp;&amp; echo -e &quot;查看snap命令及其选项\n&quot;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-00-12%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-00-12屏幕截图"></p>
+<pre><code class="shell">snap version &amp;&amp; echo -e &quot;查看snap版本\n&quot;
+snap install hello-world &amp;&amp; echo -e &quot;尝试安装hello-world\n&quot;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-01-42%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-01-42屏幕截图"></p>
+<pre><code class="shell">systemctl enable snapd.service &amp;&amp; echo -e &quot;若经常使用snap，可选择开机自启动snapd服务\n&quot;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-02-17%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-02-17屏幕截图"></p>
+<h1 id="利用snap安装multipass"><a href="#利用snap安装multipass" class="headerlink" title="利用snap安装multipass"></a>利用snap安装multipass</h1><pre><code class="shell">snap find multipass &amp;&amp; echo -e &quot;从软件商店中查找multipass\n&quot;
+snap install multipass &amp;&amp; echo -e &quot;下载multipass\n&quot;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-07-25%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-07-25屏幕截图"></p>
+<pre><code class="shell">multipass launch --name foo &amp;&amp; echo -e &quot;创建名为foo的实例，并启动实例\n&quot;
+multipass exec foo -- lsb_release -a &amp;&amp; echo -e &quot;让实例运行lsb_release -a命令查看实例基本信息\n&quot;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-25-05%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-25-05屏幕截图"></p>
+<pre><code class="shell">multipass shell foo &amp;&amp; echo -e &quot;以命令行形式运行实例foo\n&quot;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-27-08%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-27-08屏幕截图"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-27-16%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-27-16屏幕截图"></p>
+<pre><code class="shell">exit &amp;&amp;  echo  -e &quot;实例内执行exit，登出实例\n&quot;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-28-03%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-28-03屏幕截图"></p>
+<pre><code class="shell">multipass ls &amp;&amp; echo  -e &quot;列出所有实例\n&quot;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-28-32%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-28-32屏幕截图"></p>
+<pre><code class="shell">multipass info foo &amp;&amp; echo -e &quot;查看实例foo详细信息\n&quot;
+multipass delete foo &amp;&amp; echo -e &quot;将实例foo移入回收站，但并未删除\n&quot;
+multipass recover foo &amp;&amp; echo -e &quot;将实例foo移出回收站\n&quot;
+multipass purge &amp;&amp; echo -e &quot;清空回收站\n&quot;
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-29-36%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-29-36屏幕截图"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-31-58%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-31-58屏幕截图"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="true">
+                <source type="audio/mpeg" src="/statics/guangdefangxiang.mp3">
+            </audio>
+            
+                        
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="/img/avatar.png" height=300 width=300></img>
+                    <p>Yolel</p>
+                    <span>Think like an artist, develop like an artisan</span>
+                    <dl>
+                        
+                            
+                                <dd><a href="https://github.com/Yolel" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                            
+                            
+                                <dd><a href="https://twitter.com/qq2497855226" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                            
+                            
+                                <dd><a href="https://stackoverflow.com/users/15915006/yolel" target="_blank"><span
+                                    class=" iconfont icon-stack-overflow"></span></a></dd>
+                            
+                        
+                        
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">4 <p>Articles</p></a></li>
+                    <li><a href="/categories">8 <p>Categories</p></a></li>
+                    <li><a href="/tags">8 <p>Tags</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>Contents</h4>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#snap%E7%AE%80%E4%BB%8B"><span class="toc-number">1.3.</span> <span class="toc-text">snap简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#multipass%E7%AE%80%E4%BB%8B"><span class="toc-number">1.4.</span> <span class="toc-text">multipass简介</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85snap"><span class="toc-number">2.</span> <span class="toc-text">安装snap</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%A9%E7%94%A8snap%E5%AE%89%E8%A3%85multipass"><span class="toc-number">3.</span> <span class="toc-text">利用snap安装multipass</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+       <p class="copyright" id="copyright">
+        &copy; 2022
+        <span class="gradient-text">
+            Yolel
+        </span>.
+        Tweaked by <a href="https://github.com/Yolel" title="Yolel" target="_blank" rel="noopener">Yolel</a>
+        </span>
+    </p>
+        
+        
+    </p>
+</footer>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX", "TeX"],
+      linebreaks: {
+        automatic: true
+      },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+      ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      noUndefined: {
+        attributes: {
+          mathcolor: "red",
+          mathbackground: "#FFEEEE",
+          mathsize: "90%"
+        }
+      },
+      Macros: {
+        href: "{}"
+      }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script>
+  function initialMathJax() {
+    MathJax.Hub.Queue(function () {
+      var all = MathJax.Hub.getAllJax(),
+        i;
+      // console.log(all);
+      for (i = 0; i < all.length; i += 1) {
+        console.log(all[i].SourceElement().parentNode)
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  }
+
+  function reprocessMathJax() {
+    if (typeof MathJax !== 'undefined') {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  }
+</script>
+
+
+ 
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+ 
+<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+ 
+<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
+ 
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
+  
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
+   
+<script src="/js/busuanzi.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    if ($('span[id^="busuanzi_"]').length) {
+      initialBusuanzi();
+    }
+  });
+</script>
+ 
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+<script>
+  function initialTyped() {
+    var typedTextEl = $('.typed-text');
+    if (typedTextEl && typedTextEl.length > 0) {
+      var typed = new Typed('.typed-text', {
+        strings: ['Think like an artist, develop like an artisan', '艺术家思维去思考问题，工匠创造精神去开发'],
+        typeSpeed: 90,
+        loop: true,
+        loopCount: Infinity,
+        backSpeed: 20,
+      });
+    }
+  }
+
+  if ($('.article-header') && $('.article-header').length) {
+    $(document).ready(function () {
+      initialTyped();
+    });
+  }
+</script>
+
+
+
+
+<!-- 引用依赖 -->
+<script>document.write(aplayerconf)</script>
+
+
+
+
+</html>

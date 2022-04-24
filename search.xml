@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Mac M1 Pro利用QEMU安装WIN11</title>
+      <link href="/2022/04/24/Mac-M1-Pro%E5%88%A9%E7%94%A8QEMU%E5%AE%89%E8%A3%85WIN11/"/>
+      <url>/2022/04/24/Mac-M1-Pro%E5%88%A9%E7%94%A8QEMU%E5%AE%89%E8%A3%85WIN11/</url>
+      
+        <content type="html"><![CDATA[<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="利用Homebrew下载QEMU和UTM（推荐）"><a href="#利用Homebrew下载QEMU和UTM（推荐）" class="headerlink" title="利用Homebrew下载QEMU和UTM（推荐）"></a>利用Homebrew下载QEMU和UTM（推荐）</h2><pre><code class="shell">brew install qemubrew install --cask UTM</code></pre><p>附：也可到二者官网下载。</p><h2 id="下载-Hyper-V-格式虚拟盘"><a href="#下载-Hyper-V-格式虚拟盘" class="headerlink" title="下载 Hyper-V 格式虚拟盘"></a>下载 Hyper-V 格式虚拟盘</h2><blockquote><ol><li><p>访问 Windows 11 Insider Preview 的下载页面（<a href="https://sspai.com/s/66Rd%EF%BC%89%E3%80%82">https://sspai.com/s/66Rd）。</a></p><p>注：该页面需要登录加入了「预览体验计划」的微软账号才能访问。</p></li><li><p>点击蓝色的「Windows Client ARM64 Insider Preview - [ 版本号 ] 」按钮下载虚拟机，这将得到一个名称形如  <strong>Windows11_InsiderPreview_Client_ARM64_en-us_22598.VHDX</strong> 的文件。</p></li></ol></blockquote><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/3001650775253_.png" alt="下载1"></p><h2 id="下载spice-guest-tools-0-164-3-iso"><a href="#下载spice-guest-tools-0-164-3-iso" class="headerlink" title="下载spice-guest-tools-0.164.3.iso"></a>下载spice-guest-tools-0.164.3.iso</h2><blockquote><ol><li>访问spice-guest-tools-0.164.3.iso的下载页面（<a href="https://mac.getutm.app/support/%EF%BC%89%E3%80%82">https://mac.getutm.app/support/）。</a></li><li>点击蓝色的「Download」按钮下载虚拟机，这将得到一个名称形如  <strong>spice-guest-tools-0.164.3.iso</strong> 的文件。</li></ol></blockquote><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24%2012.48.32.png" alt="下载2"></p><h2 id="VHDX格式转换QCOW2"><a href="#VHDX格式转换QCOW2" class="headerlink" title="VHDX格式转换QCOW2"></a>VHDX格式转换QCOW2</h2><pre><code class="shell">qemu-img convert -p -f vhdx -O qcow2 Windows11_InsiderPreview_Client_ARM64_en-us_22598.VHDX win11.qcow2</code></pre><blockquote><p><strong>-p</strong> 选项指显示进度条；</p><p><strong>-f</strong> 选项分别用于指定输入格式；</p><p><strong>-O</strong> 选项分别用于指定输出格式；</p></blockquote><h2 id="文件汇总"><a href="#文件汇总" class="headerlink" title="文件汇总"></a>文件汇总</h2><blockquote><p>至此，我们得到了下图三个文件</p><ul><li>Windows11_InsiderPreview_Client_ARM64_en-us_22598.VHDX</li><li>win11.qcow2</li><li>spice-guest-tools-0.164.3.iso</li></ul><p>注：由于版本不同，文件名可能略有不同</p></blockquote><p>![文件汇总](<a href="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24">https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/截屏2022-04-24</a> 12.57.09.png)</p><h1 id="创建Win11"><a href="#创建Win11" class="headerlink" title="创建Win11"></a>创建Win11</h1><h2 id="打开UTM"><a href="#打开UTM" class="headerlink" title="打开UTM"></a>打开UTM</h2><h3 id="选择-新建一个虚拟机"><a href="#选择-新建一个虚拟机" class="headerlink" title="选择==新建一个虚拟机=="></a>选择==新建一个虚拟机==</h3><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24%2013.04.49.png" alt="新建虚拟机"></p><h3 id="选择-虚拟化"><a href="#选择-虚拟化" class="headerlink" title="选择==虚拟化=="></a>选择==虚拟化==</h3><p><img src="/Users/yolel/Downloads/%E6%88%AA%E5%B1%8F2022-04-24%2013.05.17.png" alt="选择虚拟化"></p><h3 id="选择-Windows"><a href="#选择-Windows" class="headerlink" title="选择==Windows=="></a>选择==Windows==</h3><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24%2013.07.32.png" alt="选择Windows"></p><h3 id="勾选导入VHDX，UEFI（默认勾选），导入qcow2文件"><a href="#勾选导入VHDX，UEFI（默认勾选），导入qcow2文件" class="headerlink" title="勾选导入VHDX，UEFI（默认勾选），导入qcow2文件"></a>勾选导入VHDX，UEFI（默认勾选），导入qcow2文件</h3><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24%2013.08.58.png" alt="导入qcow2"></p><h3 id="硬件与文件共享默认即可，选-下一步-，到总结选-保存"><a href="#硬件与文件共享默认即可，选-下一步-，到总结选-保存" class="headerlink" title="硬件与文件共享默认即可，选==下一步==，到总结选==保存=="></a><strong>硬件</strong>与<strong>文件共享</strong>默认即可，选==下一步==，到<strong>总结</strong>选==保存==</h3><p>![创建完成](<a href="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24">https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/截屏2022-04-24</a> 13.11.54.png)</p><p><em>至此，已创建完Win11虚拟机</em></p><h1 id="启动并安装Win11"><a href="#启动并安装Win11" class="headerlink" title="启动并安装Win11"></a>启动并安装Win11</h1><h2 id="启动Win11，进入系统安装界面"><a href="#启动Win11，进入系统安装界面" class="headerlink" title="启动Win11，进入系统安装界面"></a>启动Win11，进入系统安装界面</h2><p>![安装Win11](<a href="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24">https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/截屏2022-04-24</a> 13.19.41.png)</p><p>接下来，正常安装，语言若无Chinese，可先选择US，进入联网后重新设置即可。</p><h2 id="注：卡在联网阶段的解决方案"><a href="#注：卡在联网阶段的解决方案" class="headerlink" title="注：卡在联网阶段的解决方案"></a>注：卡在联网阶段的解决方案</h2><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24%2013.24.10.png" alt="特殊情况"></p><blockquote><p>若出现==Next==变成灰色无法点击，则按住键盘<code>Shifi</code>+<code>fn</code>+<code>F10</code>,弹出<strong>CMD</strong>，</p><p>然后输入<code>oobe\bypassnro</code>，系统重启，重新进入Win11安装界面，安装步骤到上一步后，变成如下图所示</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24%2013.29.50.png" alt="第一步"></p><blockquote><p>按照上图，点击==I don’t have internet==,到下图。</p></blockquote><p>![第二步](<a href="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24">https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/截屏2022-04-24</a> 13.31.54.png)</p><h2 id="继续安装"><a href="#继续安装" class="headerlink" title="继续安装"></a>继续安装</h2><blockquote><p>接下来便是正常安装，设置用户名，密码，密保问题等等，直到出现下图所示，等待一段时间</p></blockquote><p>![截屏2022-04-24 13.34.57](<a href="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24">https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/截屏2022-04-24</a> 13.34.57.png)</p><blockquote><p>到下图，Win11算是已经安装完成了，但由于缺少驱动，依旧无法连网，并且屏幕大小适配较差</p></blockquote><p>![安装完成](<a href="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24">https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/截屏2022-04-24</a> 13.37.03.png)</p><blockquote><p>按照下图，加载驱动，选择spice-guest-tools-0.164.3.iso</p></blockquote><p>![加载驱动CD](<a href="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24">https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/截屏2022-04-24</a> 13.45.40.png)</p><blockquote><p>按下图，进入驱动</p></blockquote><p>![进入驱动CD](<a href="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24">https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/截屏2022-04-24</a> 13.51.38.png)</p><blockquote><p>按下图，选择spice-guest-tools，正常安装，最后重启即可</p></blockquote><p>![安装驱动](<a href="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24">https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/截屏2022-04-24</a> 13.53.19.png)</p><blockquote><p>最终效果进入全屏时如下图，已正常联网。</p></blockquote><p>![最终效果](<a href="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-04-24">https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/截屏2022-04-24</a> 13.57.37.png)</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> SYSTEM </category>
+          
+          <category> UTM </category>
+          
+          <category> win11 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> virturalmachine </tag>
+            
+            <tag> system </tag>
+            
+            <tag> win11 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>远程Terminal控制</title>
+      <link href="/2022/01/14/%E8%BF%9C%E7%A8%8BTerminal/"/>
+      <url>/2022/01/14/%E8%BF%9C%E7%A8%8BTerminal/</url>
+      
+        <content type="html"><![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><blockquote><p>安装ttyd和sunny，利用ttyd命令在本地回送地址（127.0.0.1:xxxx）部署Web Terminal，然后，利用sunny命令，即ngrok的隧道服务器对ttyd做反向代理，进行内网穿透，达到从外网即跨平台连接到本地terminal的目的。</p></blockquote><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><blockquote><p>系统：Darwin Kernel Version 21.2.0[Mac Book Pro]</p></blockquote><h2 id="ttyd简介"><a href="#ttyd简介" class="headerlink" title="ttyd简介"></a>ttyd简介</h2><blockquote><p>首先来说说，什么是snap，ttyd 是一个 C 语言编写的命令行程序，可以把任意命令行程序分享到网页上操作，可以看做是个网页版的远程终端。</p></blockquote><h2 id="ngrok简介"><a href="#ngrok简介" class="headerlink" title="ngrok简介"></a>ngrok简介</h2><blockquote><p>那再来说说什么是nginx，ngrok 是一个反向代理，通过在公共的端点和本地运行的 Web 服务器之间建立一个安全的通道。</p><p>ps：ngrok的服务器部署在国外，国内访问断断续续，故我们这里使用的是<a href="https://www.ngrok.cc/">sunny-ngrok</a></p></blockquote><h1 id="命令下载及使用"><a href="#命令下载及使用" class="headerlink" title="命令下载及使用"></a>命令下载及使用</h1><h2 id="ttyd下载"><a href="#ttyd下载" class="headerlink" title="ttyd下载"></a>ttyd下载</h2><pre><code class="shell">brew install ttyd</code></pre><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-01-14%2019.43.11.png" alt="下载ttyd"></p><h2 id="Sunny-ngrok下载"><a href="#Sunny-ngrok下载" class="headerlink" title="Sunny-ngrok下载"></a>Sunny-ngrok下载</h2><blockquote><ol><li>进入sunny-ngrok官网：<a href="https://www.ngrok.cc/">https://www.ngrok.cc</a></li><li>下载sunny</li><li>注册登陆（省略注册过程）</li></ol></blockquote><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-01-14%2019.37.05.png" alt="进入官网"></p><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-01-14%2019.41.03.png" alt="下载sunny"></p><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-01-14%2020.04.39.png" alt="注册，登陆"></p><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-01-14%2019.29.43-20220114232204536.png" alt="主页"></p><blockquote><p>隧道服务器购买与设置</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-01-14%2020.09.53-20220114232255552.png" alt="购买"></p><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-01-14%2020.11.52-20220114232326788.png" alt="设置"></p><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-01-14%2020.12.32.png" alt="开通"></p><h2 id="sunny命令的配置"><a href="#sunny命令的配置" class="headerlink" title="sunny命令的配置"></a>sunny命令的配置</h2><blockquote><p>sunny下载得到的是一个zip压缩包，解压后得到了sunny的可执行文件</p></blockquote><p>你有两种运行方式:</p><ol><li>将Terminal的当前工作目录调整到解压包文件夹的位置</li></ol><pre><code class="shell">cd （省略）/darwin_amd64</code></pre><ol start="2"><li>运行以下命令,查看命令帮助</li></ol><pre><code class="shell">./sunny -h</code></pre><ol start="3"><li>在终端中运行以下命令,连接隧道服务器，实现反向代理，使部署在本机回送地址上的项目可以被公网访问</li></ol><blockquote><p>./sunny clientid 12345678(隧道ID，见下图)</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-01-14%2020.58.15.png" alt="获取隧道ID"></p><blockquote><p> 如下图所示，证明sunny连接成功</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/%E6%88%AA%E5%B1%8F2022-01-14%2021.12.27.png" alt="运行成功"></p><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> TOOLS </category>
+          
+          <category> other </category>
+          
+          <category> ttyd&amp;ngrok </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> remote control </tag>
+            
+            <tag> web terminal </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Multipass入门教程</title>
+      <link href="/2022/01/05/Multipass%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+      <url>/2022/01/05/Multipass%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><blockquote><p>安装snap命令，利用snap直接下载安装multipass</p></blockquote><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><blockquote><p>系统：Kali linux 5.14.0</p></blockquote><h2 id="snap简介"><a href="#snap简介" class="headerlink" title="snap简介"></a>snap简介</h2><blockquote><p>什么是snap，snap是一种全新的软件包管理方式，它类似一个容器拥有一个应用程序所有的文件和库，各个应用程序之间完全独立。所以使用snap包的好处就是它解决了应用程序之间的依赖问题，使应用程序之间更容易管理。但是由此带来的问题就是它占用更多的磁盘空间。</p><p>Snap的安装包扩展名是.snap，类似于一个容器，它包含一个应用程序需要用到的所有文件和库（snap包包含一个私有的root文件系统，里面包含了依赖的软件包）。它们会被安装到单独的目录；各个应用程序之间相互隔离。使用snap有很多好处，首先它解决了软件包的依赖问题；其次，也使应用程序更容易管理。</p></blockquote><h2 id="multipass简介"><a href="#multipass简介" class="headerlink" title="multipass简介"></a>multipass简介</h2><blockquote><p>那再来说说什么是Multipass，Multipass 是一个轻量级 VM 管理器，支持 Linux、Windows 与 macOS，这是为希望使用单个命令提供全新 Ubuntu 环境的开发人员而设计的。</p><p>使用 Linux 上的 KVM、Windows 上的 Hyper-V 和 macOS 上的 HyperKit 来以最小的开销运行 VM，同时它还可以在 Windows 和 macOS 上使用 VirtualBox。</p></blockquote><h1 id="安装snap"><a href="#安装snap" class="headerlink" title="安装snap"></a>安装snap</h1><pre><code class="shell">sudo apt install snapd &amp;&amp; echo -e &quot;使用apt软件包管理工具安装snapd\n&quot;</code></pre><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2000-53-48%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 00-53-48屏幕截图"></p><pre><code class="shell">snap help &amp;&amp; echo -e &quot;检验snap是否安装成功\n&quot;</code></pre><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2000-55-40%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 00-55-40屏幕截图"></p><pre><code class="shell">systemctl start snapd.service &amp;&amp; ehco -e &quot;开启snapd服务，否则将无法安装软件\n&quot;snap &amp;&amp; echo -e &quot;查看snap命令及其选项\n&quot;</code></pre><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-00-12%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-00-12屏幕截图"></p><pre><code class="shell">snap version &amp;&amp; echo -e &quot;查看snap版本\n&quot;snap install hello-world &amp;&amp; echo -e &quot;尝试安装hello-world\n&quot;</code></pre><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-01-42%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-01-42屏幕截图"></p><pre><code class="shell">systemctl enable snapd.service &amp;&amp; echo -e &quot;若经常使用snap，可选择开机自启动snapd服务\n&quot;</code></pre><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-02-17%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-02-17屏幕截图"></p><h1 id="利用snap安装multipass"><a href="#利用snap安装multipass" class="headerlink" title="利用snap安装multipass"></a>利用snap安装multipass</h1><pre><code class="shell">snap find multipass &amp;&amp; echo -e &quot;从软件商店中查找multipass\n&quot;snap install multipass &amp;&amp; echo -e &quot;下载multipass\n&quot;</code></pre><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-07-25%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-07-25屏幕截图"></p><pre><code class="shell">multipass launch --name foo &amp;&amp; echo -e &quot;创建名为foo的实例，并启动实例\n&quot;multipass exec foo -- lsb_release -a &amp;&amp; echo -e &quot;让实例运行lsb_release -a命令查看实例基本信息\n&quot;</code></pre><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-25-05%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-25-05屏幕截图"></p><pre><code class="shell">multipass shell foo &amp;&amp; echo -e &quot;以命令行形式运行实例foo\n&quot;</code></pre><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-27-08%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-27-08屏幕截图"></p><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-27-16%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-27-16屏幕截图"></p><pre><code class="shell">exit &amp;&amp;  echo  -e &quot;实例内执行exit，登出实例\n&quot;</code></pre><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-28-03%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-28-03屏幕截图"></p><pre><code class="shell">multipass ls &amp;&amp; echo  -e &quot;列出所有实例\n&quot;</code></pre><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-28-32%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-28-32屏幕截图"></p><pre><code class="shell">multipass info foo &amp;&amp; echo -e &quot;查看实例foo详细信息\n&quot;multipass delete foo &amp;&amp; echo -e &quot;将实例foo移入回收站，但并未删除\n&quot;multipass recover foo &amp;&amp; echo -e &quot;将实例foo移出回收站\n&quot;multipass purge &amp;&amp; echo -e &quot;清空回收站\n&quot;</code></pre><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-29-36%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-29-36屏幕截图"></p><p><img src="https://cdn.jsdelivr.net/gh/Yolel/PicBed@main/img/2022-01-05%2001-31-58%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2022-01-05 01-31-58屏幕截图"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> TOOLS </category>
+          
+          <category> other </category>
+          
+          <category> multipass </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> virturalmachine </tag>
+            
+            <tag> linux </tag>
+            
+            <tag> ubuntu </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>声明</title>
+      <link href="/2022/01/03/%E5%A3%B0%E6%98%8E/"/>
+      <url>/2022/01/03/%E5%A3%B0%E6%98%8E/</url>
+      
+        <content type="html"><![CDATA[<h1 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h1><p>此Hexo主题由<a href="http://hexo.io/">Hexo</a>官方授权，并且由<a href="https://github.com/bennyxguo">Benny Guo</a>制作，托管于GitHub平台,<a href="https://github.com/TriDiamond/hexo-theme-obsidia">hexo-theme-obsidian</a>,最终由<a href="https://github.com/Yolel">Yolel</a>魔改。</p><h1 id="DECLARATION"><a href="#DECLARATION" class="headerlink" title="DECLARATION"></a>DECLARATION</h1><p>This Hexo theme was officially licensed by <a href="http://hexo.io/">Hexo</a> and produced by <a href="https://github.com/bennyxguo">Benny Guo</a>. It was hosted on GitHub, <a href="https://github.com/TriDiamond/hexo-theme-obsidia">Hexo-Theme-Obsidian</a>, and was eventually magically tweaked by <a href="https://github.com/Yolel">Yolel</a>.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> DECLARATION </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> declaration </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
